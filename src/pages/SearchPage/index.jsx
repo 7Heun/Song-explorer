@@ -1,32 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
 import SearchBar from "../../components/SearchBar";
 import SongList from "../../components/SongList";
-import { useSearchTextStore } from "../../stores/useSearchTextStore";
+import { Link, useNavigate } from "react-router";
 
 function SearchPage() {
-  const { searchText } = useSearchTextStore();
-  const { data, isLoading } = useQuery({
-    queryKey: ["getSong", searchText],
-    queryFn: () => {
-      return fetch(
-        searchText
-          ? `https://api.manana.kr/karaoke/song/${searchText}.json`
-          : "https://api.manana.kr/karaoke.json"
-      ).then((res) => {
-        return res.json();
-      });
-    },
-  });
-
-  if (isLoading) {
-    return "Loading...";
-  }
-  if (!data) {
-    return "No data";
-  }
-
+  let navigate = useNavigate();
   return (
     <div>
+      {/* <Link to="/liked">Liked</Link> */}
+      <button onClick={() => navigate("/liked")}>Liked</button>
       <SearchBar />
       <SongList />
     </div>
