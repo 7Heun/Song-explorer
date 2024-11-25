@@ -1,9 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useRef } from "react";
 import "./index.css";
+import { useSearchTextStore } from "../../stores/useSearchTextStore";
 
-function SearchBar({ onSearch }) {
+function SearchBar() {
   const inputRef = useRef();
+  const { setSearchText } = useSearchTextStore();
 
   return (
     <div className="SearchBar">
@@ -11,7 +12,7 @@ function SearchBar({ onSearch }) {
       <button
         className="SearchBar_button"
         onClick={() => {
-          onSearch(inputRef.current.value);
+          setSearchText(inputRef.current.value);
         }}
       >
         검색

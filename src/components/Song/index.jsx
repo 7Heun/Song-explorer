@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import "./index.css";
 
-function Song({ song }) {
+function Song({ title, singer, no }) {
   return (
     <div className="Song">
       <div>
-        <div className="Song_title">{song.title}</div>
-        <div className="Song_singer">{song.singer}</div>
+        <div className="Song_title">{title}</div>
+        <div className="Song_singer">{singer}</div>
       </div>
-      <div className="Song_no">{song.no}</div>
+      <div className="Song_no">{no}</div>
     </div>
   );
 }

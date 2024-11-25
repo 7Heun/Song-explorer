@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "../../components/SearchBar";
 import SongList from "../../components/SongList";
+import { useSearchTextStore } from "../../stores/useSearchTextStore";
 
 function SearchPage() {
-  const [searchText, setSearchText] = useState("");
+  const { searchText } = useSearchTextStore();
   const { data, isLoading } = useQuery({
     queryKey: ["getSong", searchText],
     queryFn: () => {
@@ -27,11 +27,8 @@ function SearchPage() {
 
   return (
     <div>
-      <SearchBar
-        setSearchText={setSearchText}
-        onSearch={(value) => setSearchText(value)}
-      />
-      <SongList songs={data} />
+      <SearchBar />
+      <SongList />
     </div>
   );
 }
